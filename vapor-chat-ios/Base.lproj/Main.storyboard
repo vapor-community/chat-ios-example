@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cm7-tz-viG">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Container-->
+        <scene sceneID="A4p-dH-nMd">
+            <objects>
+                <viewController id="Cm7-tz-viG" customClass="Container" customModule="vapor_chat_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pxn-Gh-Hf6"/>
+                        <viewControllerLayoutGuide type="bottom" id="QUE-y6-ud3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P5n-ps-O5h">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="hz3-Wg-gzK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdU-e3-Q76">
+                                <rect key="frame" x="0.0" y="80" width="600" height="520"/>
+                                <connections>
+                                    <segue destination="v8A-dO-2fM" kind="embed" id="xml-IL-jhB"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOu-1j-fkK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                <connections>
+                                    <segue destination="Abu-yI-ag8" kind="embed" id="apa-rd-MaM"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QUE-y6-ud3" firstAttribute="top" secondItem="hz3-Wg-gzK" secondAttribute="bottom" id="654-KJ-hPW"/>
+                            <constraint firstItem="mdU-e3-Q76" firstAttribute="leading" secondItem="P5n-ps-O5h" secondAttribute="leading" id="7FH-Nv-Rh9"/>
+                            <constraint firstItem="mdU-e3-Q76" firstAttribute="top" secondItem="AOu-1j-fkK" secondAttribute="bottom" id="ACd-Gu-POx"/>
+                            <constraint firstAttribute="trailing" secondItem="hz3-Wg-gzK" secondAttribute="trailing" id="GBo-S7-OH2"/>
+                            <constraint firstAttribute="trailing" secondItem="AOu-1j-fkK" secondAttribute="trailing" id="Ryg-ye-pDc"/>
+                            <constraint firstItem="hz3-Wg-gzK" firstAttribute="top" secondItem="Pxn-Gh-Hf6" secondAttribute="bottom" constant="-20" id="Txb-sW-2TE"/>
+                            <constraint firstItem="AOu-1j-fkK" firstAttribute="leading" secondItem="P5n-ps-O5h" secondAttribute="leading" id="V5T-l7-VJQ"/>
+                            <constraint firstItem="mdU-e3-Q76" firstAttribute="top" secondItem="Pxn-Gh-Hf6" secondAttribute="bottom" constant="60" id="XPH-kq-ybp"/>
+                            <constraint firstAttribute="trailing" secondItem="mdU-e3-Q76" secondAttribute="trailing" id="jHH-ei-tZc"/>
+                            <constraint firstItem="hz3-Wg-gzK" firstAttribute="leading" secondItem="P5n-ps-O5h" secondAttribute="leading" id="kqq-Qh-7GI"/>
+                            <constraint firstItem="AOu-1j-fkK" firstAttribute="top" secondItem="P5n-ps-O5h" secondAttribute="top" id="mKN-01-Lzm"/>
+                            <constraint firstItem="QUE-y6-ud3" firstAttribute="top" secondItem="mdU-e3-Q76" secondAttribute="bottom" id="wzs-ra-WzL"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aeQ-sY-Tv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-54" y="-1356"/>
+        </scene>
+        <!--Vapor Chat Controller-->
+        <scene sceneID="pNU-Wf-xp6">
+            <objects>
+                <viewController id="v8A-dO-2fM" customClass="VaporChatController" customModule="vapor_chat_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xey-NE-7eL"/>
+                        <viewControllerLayoutGuide type="bottom" id="RIS-XM-9N2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pzk-XB-gPl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="520"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HXB-MJ-3B8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="921" y="-1332"/>
+        </scene>
+        <!--Chat Header-->
+        <scene sceneID="BMe-uk-hwH">
+            <objects>
+                <viewController id="Abu-yI-ag8" customClass="ChatHeader" customModule="vapor_chat_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cHM-vw-LCY"/>
+                        <viewControllerLayoutGuide type="bottom" id="XqY-X2-fZC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cq5-HI-K0r">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qutheory-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Tzf-fg-KpG">
+                                <rect key="frame" x="8" y="8" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Tzf-fg-KpG" secondAttribute="height" multiplier="1:1" id="q0R-LP-lEg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VAPOR CHAT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y7e-fR-beN">
+                                <rect key="frame" x="80" y="8" width="107" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A REALTIME CHAT CLIENT, POWERED BY VAPOR 🚀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIc-U4-yOT">
+                                <rect key="frame" x="80" y="37" width="291.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Tzf-fg-KpG" firstAttribute="leading" secondItem="cq5-HI-K0r" secondAttribute="leading" constant="8" id="NUb-jR-SKE"/>
+                            <constraint firstItem="Y7e-fR-beN" firstAttribute="leading" secondItem="Tzf-fg-KpG" secondAttribute="trailing" constant="8" id="OrY-i1-H65"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Tzf-fg-KpG" secondAttribute="bottom" constant="8" id="ZGe-El-yYe"/>
+                            <constraint firstItem="rIc-U4-yOT" firstAttribute="leading" secondItem="Tzf-fg-KpG" secondAttribute="trailing" constant="8" id="fVG-9a-7Rb"/>
+                            <constraint firstItem="rIc-U4-yOT" firstAttribute="top" secondItem="Y7e-fR-beN" secondAttribute="bottom" constant="8" id="sTL-t0-GXO"/>
+                            <constraint firstItem="Y7e-fR-beN" firstAttribute="top" secondItem="cq5-HI-K0r" secondAttribute="top" constant="8" id="vuM-nO-L6s"/>
+                            <constraint firstItem="Tzf-fg-KpG" firstAttribute="top" secondItem="cq5-HI-K0r" secondAttribute="topMargin" constant="8" id="xDD-Dh-1UO"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QZj-2H-x14" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-54" y="-1784"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="592" height="1612"/>
+        <image name="qutheory-logo" width="200" height="200"/>
+    </resources>
+</document>
