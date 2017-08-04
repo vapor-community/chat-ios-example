@@ -7,7 +7,7 @@ This application makes use of the following third party libraries:
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
-   Copyright (c) 2014-2015 Dalton Cherry.
+   Copyright (c) 2014-2016 Dalton Cherry.
 
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
