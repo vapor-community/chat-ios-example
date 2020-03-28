@@ -33,7 +33,7 @@ class VaporChatController: ChatController {
     fileprivate func askForName() {
         let new = UIAlertController(title: "What's your GitHub name?", message: nil, preferredStyle: .alert)
         new.addTextField { _ in }
-        let action = UIAlertAction(title: "ok", style: UIAlertActionStyle.default) { [weak self] action in
+        let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default) { [weak self] action in
             self?.model.username = new.textFields?.first?.text
             self?.model.start()
         }
@@ -43,10 +43,10 @@ class VaporChatController: ChatController {
 
     internal func showDisconnect() {
         let new = UIAlertController(title: "Disconnected", message: nil, preferredStyle: .alert)
-        let kill = UIAlertAction(title: "Kill", style: UIAlertActionStyle.default) { action in
+        let kill = UIAlertAction(title: "Kill", style: UIAlertAction.Style.default) { action in
             fatalError()
         }
-        let tryAgain = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default) { [weak self] action in
+        let tryAgain = UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default) { [weak self] action in
             if self?.model.username == "null" {
                 self?.askForName()
             } else {

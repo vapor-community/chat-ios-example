@@ -277,40 +277,36 @@ class ChatController : UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: Keyboard Notifications
 
     fileprivate func listenForKeyboardChanges() {
-        let defaultCenter = NotificationCenter.default
-        defaultCenter.addObserver(self,
-                                  selector: #selector(ChatController.keyboardWillChangeFrame(_:)),
-                                  name: NSNotification.Name.UIKeyboardWillChangeFrame,
-                                  object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatController.keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
 
     fileprivate func unregisterKeyboardObservers() {
         NotificationCenter.default.removeObserver(self)
     }
 
-    func keyboardWillChangeFrame(_ note: Notification) {
+    @objc func keyboardWillChangeFrame(_ note: Notification) {
         let keyboardAnimationDetail = note.userInfo!
-        let duration = keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
-        var keyboardFrame = (keyboardAnimationDetail[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let duration = keyboardAnimationDetail[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        var keyboardFrame = (keyboardAnimationDetail[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         if let window = self.view.window {
             keyboardFrame = window.convert(keyboardFrame, to: self.view)
         }
-        let animationCurve = keyboardAnimationDetail[UIKeyboardAnimationCurveUserInfoKey] as! UInt
+        let animationCurve = keyboardAnimationDetail[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
 
         self.tableView.isScrollEnabled = false
-        self.tableView.decelerationRate = UIScrollViewDecelerationRateFast
+        self.tableView.decelerationRate = UIScrollView.DecelerationRate.fast
         self.view.layoutIfNeeded()
         var chatInputOffset = -((self.view.bounds.height - self.bottomLayoutGuide.length) - keyboardFrame.minY)
         if chatInputOffset > 0 {
             chatInputOffset = 0
         }
         self.bottomChatInputConstraint.constant = chatInputOffset
-        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions(rawValue: animationCurve), animations: { () -> Void in
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(rawValue: animationCurve), animations: { () -> Void in
             self.view.layoutIfNeeded()
             self.scrollToBottom()
             }, completion: {(finished) -> () in
                 self.tableView.isScrollEnabled = true
-                self.tableView.decelerationRate = UIScrollViewDecelerationRateNormal
+                self.tableView.decelerationRate = UIScrollView.DecelerationRate.normal
         })
     }
 
@@ -429,7 +425,7 @@ class ChatInput : UIView, StretchyTextViewDelegate {
     }
 
     func setupTextView() {
-        textView.bounds = UIEdgeInsetsInsetRect(self.bounds, self.textViewInsets)
+        textView.bounds = self.bounds.inset(by: self.textViewInsets)
         textView.stretchyTextViewDelegate = self
         textView.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
         self.styleTextView()
@@ -444,7 +440,7 @@ class ChatInput : UIView, StretchyTextViewDelegate {
 
     func setupSendButton() {
         self.sendButton.isEnabled = false
-        self.sendButton.setTitle("Send", for: UIControlState())
+        self.sendButton.setTitle("Send", for: UIControl.State())
         self.sendButton.addTarget(self, action: #selector(ChatInput.sendButtonPressed(_:)), for: .touchUpInside)
         self.sendButton.bounds = CGRect(x: 0, y: 0, width: 40, height: 1)
         self.addSubview(sendButton)
@@ -474,7 +470,7 @@ class ChatInput : UIView, StretchyTextViewDelegate {
 
     func setupBlurredBackgroundView() {
         self.addSubview(self.blurredBackgroundView)
-        self.sendSubview(toBack: self.blurredBackgroundView)
+        self.sendSubviewToBack(self.blurredBackgroundView)
     }
 
     func setupBlurredBackgroundViewConstraints() {
@@ -503,7 +499,7 @@ class ChatInput : UIView, StretchyTextViewDelegate {
 
     func stretchyTextViewDidChangeSize(_ textView: StretchyTextView) {
         let textViewHeight = textView.bounds.height
-        if textView.text.characters.count == 0 {
+        if textView.text.count == 0 {
             self.sendButtonHeightConstraint.constant = textViewHeight
         }
         let targetConstant = textViewHeight + textViewInsets.top + textViewInsets.bottom
@@ -516,7 +512,7 @@ class ChatInput : UIView, StretchyTextViewDelegate {
     }
 
     func stretchyTextViewDidReturn(_ textView: StretchyTextView) {
-        if self.textView.text.characters.count > 0 {
+        if self.textView.text.count > 0 {
             self.delegate?.chatInput(self, didSendMessage: self.textView.text)
             self.textView.text = ""
         }
@@ -524,8 +520,8 @@ class ChatInput : UIView, StretchyTextViewDelegate {
 
     // MARK: Button Presses
 
-    func sendButtonPressed(_ sender: UIButton) {
-        if self.textView.text.characters.count > 0 {
+    @objc func sendButtonPressed(_ sender: UIButton) {
+        if self.textView.text.count > 0 {
             self.delegate?.chatInput(self, didSendMessage: self.textView.text)
             self.textView.text = ""
         }
@@ -552,7 +548,7 @@ class StretchyTextView : UITextView, UITextViewDelegate {
     var maxHeightLandScape: CGFloat = 60
     var maxHeight: CGFloat {
         get {
-            return UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation) ? maxHeightPortrait : maxHeightLandScape
+            return UIApplication.shared.statusBarOrientation.isPortrait ? maxHeightPortrait : maxHeightLandScape
         }
     }
     // MARK: Private Properties
@@ -674,6 +670,6 @@ class StretchyTextView : UITextView, UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
         // TODO: Possibly filter spaces and newlines
-        self.isValid = textView.text.characters.count > 0
+        self.isValid = textView.text.count > 0
     }
 }

@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'vapor-chat-ios' do
   use_frameworks!
